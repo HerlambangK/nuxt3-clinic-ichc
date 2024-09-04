@@ -1,0 +1,332 @@
+<template>
+  <header :class="headerClass"
+    class="sticky top-0 z-30 border-b bg-background/70 backdrop-blur transition-all duration-300">
+    <UiContainer class="flex items-center justify-between " :class="headerClass">
+      <NuxtLink to="#" class="flex items-center lg:flex">
+        <!-- eslint-disable-next-line vue/html-self-closing -->
+        <img src="/static/logo.png" fit="contain" alt="Company Logo" title="Company Logo"
+          class="h-6  object-contain lg:h-6" />
+      </NuxtLink>
+      <UiContainer class="hidden items-center justify-center gap-8 lg:flex">
+        <div class="flex items-center gap-10 flex-shrink-0 ">
+          <UiNavigationMenu as="nav" class="hidden items-center justify-center gap-8 lg:flex">
+            <UiNavigationMenuList class="gap-2">
+              <UiNavigationMenuItem>
+                <UiNavigationMenuLink as-child>
+                  <UiButton to="#" variant="ghost" size="sm" class="hover:bg-muted/80"> Home</UiButton>
+                </UiNavigationMenuLink>
+              </UiNavigationMenuItem>
+              <UiNavigationMenuItem>
+                <UiNavigationMenuTrigger title="Tentang"
+                  class="h-9 px-3 text-sm capitalize hover:bg-muted/80 bg-transparent" />
+                <UiNavigationMenuContent>
+                  <div class="grid w-[600px] grid-cols-2 gap-5 p-4">
+                    <img src="https://ichc.co.id/_nuxt/img/1.3842f89.png" alt="ichc-logo"
+                      class="h-full w-full rounded-md object-cover" />
+                    <ul class="flex flex-col gap-2">
+                      <!-- <li v-for="(item, i) in beachAmenities" :key="i" class="rounded-md p-3 text-sm hover:bg-muted">
+                      <p class="mb-1 font-semibold leading-none text-foreground">{{ item.title }}</p>
+                      <p class="line-clamp-2 text-muted-foreground">{{ item.description }}</p>
+                    </li> -->
+                      <li class="rounded-md p-3 text-sm hover:bg-muted">
+                        <p class="mb-1 font-semibold leading-none text-foreground">ICHC</p>
+                        <p class="line-clamp-2 text-muted-foreground">ICHC klinik kesehatan terlengkap dengan kualitas
+                          terbaik</p>
+                      </li>
+                      <li class="rounded-md p-3 text-sm hover:bg-muted">
+                        <p class="mb-1 font-semibold leading-none text-foreground">Karir</p>
+                        <p class="line-clamp-2 text-muted-foreground">Cari pekerjaan</p>
+                      </li>
+                    </ul>
+
+                  </div>
+                </UiNavigationMenuContent>
+              </UiNavigationMenuItem>
+              <template v-for="(data, link, i) in links" :key="i">
+                <UiNavigationMenuItem>
+                  <UiNavigationMenuTrigger class="h-9 px-3 text-sm capitalize hover:bg-muted/80 bg-transparent"
+                    :title="link" />
+                  <UiNavigationMenuContent>
+                    <div
+                      class="grid grid-cols-1 gap-5 bg-background p-6 py-5 ring-1 ring-muted lg:w-[750px] lg:grid-cols-2 xl:w-[1000px] xl:grid-cols-3">
+                      <div v-for="(item, cat, index) in data" :key="`${cat}-${index}`">
+                        <p class="mb-5 text-sm font-semibold capitalize text-primary">{{ cat }}</p>
+                        <ul class="flex w-full flex-col gap-2">
+                          <li v-for="(child, k) in item" :key="k">
+                            <UiNavigationMenuLink class="data-[active]:bg-muted/80" as-child>
+                              <NuxtLink :to="child.href"
+                                class="flex gap-4 rounded-md p-3 transition hover:bg-muted/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50">
+                                <Icon :name="child.icon" class="mt-px h-5 w-5 shrink-0 text-primary" />
+                                <div class="flex flex-col gap-1.5 leading-none">
+                                  <p class="text-sm font-semibold">{{ child.name }}</p>
+                                  <p class="text-sm text-muted-foreground" v-html="child.description" />
+                                </div>
+                              </NuxtLink>
+                            </UiNavigationMenuLink>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </UiNavigationMenuContent>
+                </UiNavigationMenuItem>
+              </template>
+              <UiNavigationMenuItem>
+                <UiNavigationMenuLink as-child>
+                  <UiButton to="#" variant="ghost" size="sm">Kontak</UiButton>
+                </UiNavigationMenuLink>
+              </UiNavigationMenuItem>
+            </UiNavigationMenuList>
+          </UiNavigationMenu>
+        </div>
+
+      </UiContainer>
+      <div class="lg:hidden">
+        <UiSheet>
+          <UiSheetTrigger as-child>
+            <UiButton variant="ghost" size="icon-sm">
+              <Icon name="lucide:menu" class="h-5 w-5" />
+            </UiButton>
+            <UiSheetContent class="w-[90%] p-0">
+              <template #content>
+                <UiSheetTitle class="sr-only" title="Mobile menu" />
+                <UiSheetDescription class="sr-only" description="Mobile menu" />
+                <UiSheetX class="z-20" />
+
+                <UiScrollArea class="h-full p-5">
+                  <div class="flex flex-col gap-2">
+                    <UiButton variant="ghost" class="justify-start text-base" to="#">Home</UiButton>
+                    <UiButton variant="ghost" class="justify-start text-base" to="#">Tentang</UiButton>
+                    <template v-for="(data, link, i) in links" :key="i">
+                      <UiCollapsible>
+                        <UiCollapsibleTrigger as-child>
+                          <UiButton variant="ghost"
+                            class="w-full justify-start text-base capitalize *:data-[state=open]:-rotate-180" to="#">
+                            {{
+    link }}
+                            <Icon name="lucide:chevron-down" class="ml-auto h-4 w-4 transition" />
+                          </UiButton>
+                        </UiCollapsibleTrigger>
+                        <UiCollapsibleContent
+                          class="data-[state=closed]:animate-none data-[state=open]:p-3 data-[state=open]:pt-0">
+                          <div v-for="(item, cat, index) in data" :key="`${cat}-${index}`" class="mt-5">
+                            <p class="mb-5 text-sm font-semibold capitalize text-primary">
+                              {{ cat }}
+                            </p>
+                            <ul class="flex w-full flex-col gap-2">
+                              <li v-for="(child, k) in item" :key="k">
+                                <UiNavigationMenuLink class="data-[active]:bg-muted/80" as-child>
+                                  <NuxtLink :to="child.href"
+                                    class="flex gap-4 rounded-md p-3 transition hover:bg-muted/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50">
+                                    <Icon :name="child.icon" class="mt-px h-5 w-5 shrink-0 text-primary" />
+                                    <div class="flex flex-col gap-1.5 leading-none">
+                                      <p class="text-sm font-semibold">{{ child.name }}</p>
+                                    </div>
+                                  </NuxtLink>
+                                </UiNavigationMenuLink>
+                              </li>
+                            </ul>
+                          </div>
+                        </UiCollapsibleContent>
+                      </UiCollapsible>
+                    </template>
+                    <UiButton variant="ghost" class="justify-start text-base" to="#">Pricing</UiButton>
+
+                    <UiGradientDivider class="my-5" />
+
+                    <ul class="grid grid-cols-2 gap-x-3 gap-y-5 px-4">
+                      <li v-for="(m, j) in miniLinks" :key="j">
+                        <NuxtLink class="py-2" :to="m.href">{{ m.name }}</NuxtLink>
+                      </li>
+                    </ul>
+                    <UiGradientDivider class="my-5" />
+                    <UiButton to="#">Sign up</UiButton>
+                    <UiButton variant="outline" to="#">Log in</UiButton>
+                  </div>
+                </UiScrollArea>
+              </template>
+            </UiSheetContent>
+          </UiSheetTrigger>
+        </UiSheet>
+      </div>
+      <!-- <div class="hidden items-center gap-3 lg:flex">
+        <UiButton to="#" variant="ghost" size="sm">Log in</UiButton>
+        <UiButton to="#" size="sm">Sign up</UiButton>
+      </div> -->
+    </UiContainer>
+  </header>
+</template>
+
+<script lang="ts" setup>
+const miniLinks = [
+  { name: "About us", href: "#" },
+  { name: "Press", href: "#" },
+  { name: "Careers", href: "#" },
+  { name: "Legal", href: "#" },
+  { name: "Support", href: "#" },
+  { name: "Contact", href: "#" },
+  { name: "Sitemap", href: "#" },
+  { name: "Cookie settings", href: "#" },
+];
+const links = {
+  Layanan: {
+    Poli: [
+      {
+        name: "Bedah Mata",
+        description: "The latest industry news, updates and info.",
+        icon: "lucide:book",
+        href: "#",
+      },
+      {
+        name: "Bedah Saraf",
+        description: "See how our customers use our platform to grow their business.",
+        icon: "lucide:sparkle",
+        href: "#",
+      },
+      {
+        name: "Penyakit Dalam",
+        description: "All the information you need to know about our platform.",
+        icon: "lucide:play-circle",
+        href: "#",
+      },
+      {
+        name: "Gigi",
+        description: "Get all your questions answered in our help center.",
+        icon: "lucide:life-buoy",
+        href: "#",
+      },
+    ],
+    Mata: [
+      {
+        name: "Operasi Lasik",
+        description: "Learn more about our company and our team.",
+        icon: "lucide:eye",
+        href: "#",
+      },
+      {
+        name: "Operasi Katarak",
+        description: "Join our team and help us build the future.",
+        icon: "lucide:eye",
+        href: "#",
+      },
+
+    ],
+    "Kerjasama": [
+      {
+        name: "Marketing",
+        description: "Learn more about our company and our team.",
+        icon: "lucide:flag",
+        href: "#",
+      },
+      {
+        name: "Sales",
+        description: "Join our team and help us build the future.",
+        icon: "lucide:circle-dollar-sign",
+        href: "#",
+      },
+      {
+        name: "Karir",
+        description: "Get in touch with our team.",
+        icon: "lucide:mail",
+        href: "#",
+      },
+
+    ],
+  },
+  Artikel: {
+    Education: [
+      {
+        name: "Blog",
+        description: "The latest industry news, updates and info.",
+        icon: "lucide:book",
+        href: "#",
+      },
+      {
+        name: "Customer stories",
+        description: "See how our customers use our platform to grow their business.",
+        icon: "lucide:sparkle",
+        href: "#",
+      },
+      {
+        name: "Video tutorials",
+        description: "All the information you need to know about our platform.",
+        icon: "lucide:play-circle",
+        href: "#",
+      },
+      {
+        name: "Help center",
+        description: "Get all your questions answered in our help center.",
+        icon: "lucide:life-buoy",
+        href: "#",
+      },
+    ],
+    "Ibu dan Anak": [
+      {
+        name: "About us",
+        description: "Learn more about our company and our team.",
+        icon: "lucide:flag",
+        href: "#",
+      },
+      {
+        name: "Careers",
+        description: "Join our team and help us build the future.",
+        icon: "lucide:briefcase",
+        href: "#",
+      },
+      {
+        name: "Contact us",
+        description: "Get in touch with our team.",
+        icon: "lucide:mail",
+        href: "#",
+      },
+    ],
+    "Tips and Trick": [
+      {
+        name: "Marketing",
+        description: "Learn more about our company and our team.",
+        icon: "lucide:flag",
+        href: "#",
+      },
+      {
+        name: "Sales",
+        description: "Join our team and help us build the future.",
+        icon: "lucide:circle-dollar-sign",
+        href: "#",
+      },
+      {
+        name: "Customer support",
+        description: "Get in touch with our team.",
+        icon: "lucide:mail",
+        href: "#",
+      },
+      {
+        name: "Engage",
+        description: "Get in touch with our team.",
+        icon: "lucide:messages-square",
+        href: "#",
+      },
+    ],
+  },
+};
+
+import { ref, onMounted, onUnmounted } from 'vue';
+
+const isScrolled = ref(false);
+
+const handleScroll = () => {
+  isScrolled.value = window.scrollY > 50; // Threshold scroll
+};
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
+});
+
+// Menyesuaikan kelas header berdasarkan state isScrolled
+const headerClass = computed(() => ({
+  'h-12 transition-all duration-200 ease-in-out': isScrolled.value,
+  'h-16 transition-all duration-200 ease-in-out': !isScrolled.value,
+}));
+</script>
