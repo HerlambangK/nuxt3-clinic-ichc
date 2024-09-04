@@ -4,7 +4,7 @@
     <UiContainer class="flex items-center justify-between " :class="headerClass">
       <NuxtLink to="#" class="flex items-center lg:flex">
         <!-- eslint-disable-next-line vue/html-self-closing -->
-        <img src="/static/logo.png" fit="contain" alt="Company Logo" title="Company Logo"
+        <img src="/static/logo.png" fit="contain" alt="ichc Logo" title="Company Logo"
           class="h-6  object-contain lg:h-6" />
       </NuxtLink>
       <UiContainer class="hidden items-center justify-center gap-8 lg:flex">
