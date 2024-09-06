@@ -1,22 +1,4 @@
-<script setup lang="ts">
-import { ref, reactive } from "vue";
-import { Button } from "./ui/button";
-import { Card, CardHeader, CardContent, CardFooter } from "./ui/card";
-import { Label } from "./ui/label";
-import { Input } from "./ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./ui/select";
-import { Textarea } from "./ui/textarea";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-
-import { AlertCircle, Building2, Phone, Mail, Clock } from "lucide-vue-next";
-
+<!-- <script setup lang="ts">
 interface ContactFormeProps {
   firstName: string;
   lastName: string;
@@ -43,159 +25,76 @@ const handleSubmit = () => {
 
   window.location.href = mailToLink;
 };
-</script>
+</script> -->
+
 
 <template>
-  <section
-    id="contact"
-    class="container py-24 sm:py-32"
-  >
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div>
-        <div class="mb-4">
-          <h2 class="text-lg text-primary mb-2 tracking-wider">Contact</h2>
-
-          <h2 class="text-3xl md:text-4xl font-bold">Connect With Us</h2>
-        </div>
-        <p class="mb-8 text-muted-foreground lg:w-5/6">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
-          ipsam sint enim exercitationem ex autem corrupti quas tenetur
-        </p>
-
-        <div class="flex flex-col gap-4">
-          <div>
-            <div class="flex gap-2 mb-1">
-              <Building2 />
-              <div class="font-bold">Find us</div>
-            </div>
-
-            <div>742 Evergreen Terrace, Springfield, IL 62704</div>
-          </div>
-
-          <div>
-            <div class="flex gap-2 mb-1">
-              <Phone />
-              <div class="font-bold">Call us</div>
-            </div>
-
-            <div>+1 (619) 123-4567</div>
-          </div>
-
-          <div>
-            <div class="flex gap-2 mb-1">
-              <Mail />
-              <div class="font-bold">Mail US</div>
-            </div>
-
-            <div>leomirandadev@gmail.com</div>
-          </div>
-
-          <div>
-            <div class="flex gap-2">
-              <Clock />
-              <div class="font-bold">Visit us</div>
-            </div>
-
+  <UiContainer class="grid grid-cols-1 items-center py-10 lg:min-h-[800px] lg:grid-cols-2 lg:gap-20">
+    <div class="mx-auto">
+      <h1 class="mb-4 text-4xl font-semibold lg:mb-6 lg:text-5xl">Contact us</h1>
+      <p class="mb-12 text-lg text-muted-foreground lg:text-sm">
+        Our friendly team would love to hear from you.
+      </p>
+      <form class="max-w-[480px]" @submit="submit">
+        <fieldset :disabled="isSubmitting" class="grid gap-6">
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div>
-              <div>Monday - Friday</div>
-              <div>8AM - 4PM</div>
+              <UiVeeInput label="First name" placeholder="Nama depan" name="firstName" required />
+            </div>
+            <div>
+              <UiVeeInput label="Last name" placeholder="Nama belakang" name="lastName" required />
             </div>
           </div>
-        </div>
-      </div>
+          <div>
+            <UiVeeInput label="Email" placeholder="me@example.com" type="email" name="email" required />
+          </div>
+          <div>
+            <UiVeeInput label="Phone" type="number" name="phone" placeholder="isikan nomor hp yang anda gunakan"
+              required />
 
-      <!-- form -->
-      <Card class="bg-muted/60 dark:bg-card">
-        <CardHeader class="text-primary text-2xl"> </CardHeader>
-        <CardContent>
-          <form
-            @submit.prevent="handleSubmit"
-            class="grid gap-4"
-          >
-            <div class="flex flex-col md:flex-row gap-8">
-              <div class="flex flex-col w-full gap-1.5">
-                <Label for="first-name">First Name</Label>
-                <Input
-                  id="first-name"
-                  type="text"
-                  placeholder="Leopoldo"
-                  v-model="contactForm.firstName"
-                />
-              </div>
+          </div>
+          <div>
+            <UiVeeTextarea :rows="5" label="Message" placeholder="Leave us a message..." name="message" required />
+          </div>
+          <div>
+            <UiButton v-wave class="w-full" type="submit">Send message</UiButton>
+          </div>
 
-              <div class="flex flex-col w-full gap-1.5">
-                <Label for="last-name">Last Name</Label>
-                <Input
-                  id="last-name"
-                  type="text"
-                  placeholder="Miranda"
-                  v-model="contactForm.lastName"
-                />
-              </div>
-            </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="hidden lg:flex mt-10 h-[300px] w-full overflow-hidden rounded-lg lg:mt-0 lg:h-full lg:rounded-none">
+      <iframe
+        src="
+        https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3470.764197810031!2d106.98935792975499!3d-6.24763851954169!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698d002c528829%3A0x8889ffd78a9c9edd!2sICHC%20Klinik!5e0!3m2!1sid!2sid!4v1725521057960!5m2!1sid!2sid"
+        width=" 800" height="800" class="h-full w-full" style="border: 0" allowfullscreen="true" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade" />
+    </div>
+  </UiContainer>
 
-            <div class="flex flex-col gap-1.5">
-              <Label for="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="leomirandadev@gmail.com"
-                v-model="contactForm.email"
-              />
-            </div>
-
-            <div class="flex flex-col gap-1.5">
-              <Label for="subject">Subject</Label>
-
-              <Select v-model="contactForm.subject">
-                <SelectTrigger>
-                  <SelectValue placeholder="Select a subject" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectItem value="Web Development">
-                      Web Development
-                    </SelectItem>
-                    <SelectItem value="Mobile Development">
-                      Mobile Development
-                    </SelectItem>
-                    <SelectItem value="Figma Design"> Figma Design </SelectItem>
-                    <SelectItem value="REST API "> REST API </SelectItem>
-                    <SelectItem value="FullStack Project">
-                      FullStack Project
-                    </SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div class="flex flex-col gap-1.5">
-              <Label for="message">Message</Label>
-              <Textarea
-                id="message"
-                placeholder="Your message..."
-                rows="5"
-                v-model="contactForm.message"
-              />
-            </div>
-
-            <Alert
-              v-if="invalidInputForm"
-              variant="destructive"
-            >
-              <AlertCircle class="w-4 h-4" />
-              <AlertTitle>Error</AlertTitle>
-              <AlertDescription>
-                Your session has expired. Please log in again.
-              </AlertDescription>
-            </Alert>
-
-            <Button class="mt-4">Send message</Button>
-          </form>
-        </CardContent>
-
-        <CardFooter></CardFooter>
-      </Card>
-    </section>
-  </section>
 </template>
+
+<script lang="ts" setup>
+import { object, string, number } from "yup";
+import type { InferType } from "yup";
+
+const schema = object({
+  firstName: string().required().label("First name").typeError("format nama tidak valid"),
+  lastName: string().required().label("Last name").typeError("format nama tidak valid"),
+  email: string().email().required().label("Email").typeError("format email tidak valid"),
+  phone: number().required().label("Phone").typeError("format nomor tidak valid"),
+  message: string().required().label("Message").typeError("format pesan tidak valid"),
+});
+
+const { handleSubmit, isSubmitting } = useForm<InferType<typeof schema>>({
+  validationSchema: schema,
+});
+
+const submit = handleSubmit(async (values) => {
+  console.log(values);
+
+  useSonner.success("Pesan Terkirim", {
+    description: "Pesan terkirim, terima kasih sudah menghubungi kami.",
+  });
+});
+</script>

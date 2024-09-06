@@ -31,7 +31,24 @@ export default defineNuxtConfig({
     head: {
       title: SITE_TITLE,
       titleTemplate: `%s | ${SITE_NAME}`,
-
+      meta: [
+        { charset: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { hid: "description", name: "description", content: "" },
+        { name: "format-detection", content: "telephone=no" },
+        {
+          name: "facebook-domain-verification",
+          content: "8ru77nfefhm6qrcf3ws91y4dv0yy90",
+        },
+      ],
+      link: [
+        {
+          hid: "icon",
+          rel: "icon",
+          type: "image/png",
+          href: "/favicon.png",
+        },
+      ],
       script: [
         {
           src: "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.9/pdfmake.min.js",
@@ -58,6 +75,24 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "v-wave/nuxt",
   ],
+
+  // axios: {
+  //   baseURL: process.env.API ? process.env.API : "https://api.ichc.co.id",
+  // },
+
+  // moment: {
+  //   defaultLocale: "id",
+  //   locales: ["id"],
+  // },
+  // sitemap: {
+  //   hostname: 'https://ichc.co.id',
+  //   gzip: true,
+  //   defaults: {
+  //     changefreq: 'daily',
+  //     priority: 1,
+  //     lastmod: new Date(),
+  //   },
+  // },
 
   vWave: { color: "hsl(var(--primary))" },
   compatibilityDate: "2024-07-09",

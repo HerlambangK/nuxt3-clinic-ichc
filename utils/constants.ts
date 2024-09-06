@@ -15,3 +15,5 @@ export const TABLE_PRIMARY_BTN = buttonStyles({
   size: "sm",
   class: "h-[30px] px-2 text-xs",
 });
+
+export const COMPANY_NAME = "ICHC";

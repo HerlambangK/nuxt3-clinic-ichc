@@ -5,7 +5,7 @@
       <NuxtLink to="#" class="flex items-center lg:flex">
         <!-- eslint-disable-next-line vue/html-self-closing -->
         <img src="/static/logo.png" fit="contain" alt="ichc Logo" title="Company Logo"
-          class="h-6  object-contain lg:h-6" />
+          class="h-6  object-contain lg:h-10" />
       </NuxtLink>
       <UiContainer class="hidden items-center justify-center gap-8 lg:flex">
         <div class="flex items-center gap-10 flex-shrink-0 ">
@@ -48,7 +48,7 @@
                     :title="link" />
                   <UiNavigationMenuContent>
                     <div
-                      class="grid grid-cols-1 gap-5 bg-background p-6 py-5 ring-1 ring-muted lg:w-[750px] lg:grid-cols-2 xl:w-[1000px] xl:grid-cols-3">
+                      class="grid grid-cols-1 gap-5 bg-background p-6 py-5 ring-1 ring-muted lg:w-[650px] lg:grid-cols-2 xl:w-[900px] xl:grid-cols-3">
                       <div v-for="(item, cat, index) in data" :key="`${cat}-${index}`">
                         <p class="mb-5 text-sm font-semibold capitalize text-primary">{{ cat }}</p>
                         <ul class="flex w-full flex-col gap-2">
@@ -86,7 +86,7 @@
             <UiButton variant="ghost" size="icon-sm">
               <Icon name="lucide:menu" class="h-5 w-5" />
             </UiButton>
-            <UiSheetContent class="w-[90%] p-0">
+            <UiSheetContent class="w-[90%] p-0" side="right">
               <template #content>
                 <UiSheetTitle class="sr-only" title="Mobile menu" />
                 <UiSheetDescription class="sr-only" description="Mobile menu" />

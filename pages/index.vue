@@ -1,15 +1,13 @@
 <script setup lang="ts">
-// import Navbar from "../components/Home/Navbar.vue";
 import Hero from "../components/Home/Hero.vue";
-// import Benefits from "../components/Home/Benefits.vue";
-// import Features from "../components/Home/Features.vue";
-// import Services from "../components/Home/Services.vue";
-// import Sponsors from "../components/Home/Sponsors.vue";
+import About from "../components/Home/About.vue";
+import Patners from "../components/Home/Patners.vue";
+import Blog from "../components/Home/Blog.vue";
 // import Testimonials from "../components/Home/Testimonials.vue";
 // import Team from "../components/Home/Team.vue";
 // import Pricing from "../components/Home/Pricing.vue";
 // import Community from "../components/Home/Community.vue";
-// import Contact from "../components/Home/Contact.vue";
+import Contact from "../components/Home/Contact.vue";
 // import FAQ from "../components/Home/FAQ.vue";
 // import Footer from "../components/Home/Footer.vue";
 </script>
@@ -19,18 +17,17 @@ import Hero from "../components/Home/Hero.vue";
   <TablePage /> -->
   <!-- <Navbar /> -->
   <Hero />
-  <Hero />
-  <Hero />
-  <Hero />
-  <!-- <Sponsors />
-  <Benefits />
-  <Features />
+  <About />
+  <Blog />
+  <!-- <Benefits /> -->
+  <Patners />
+  <!-- <Features />
   <Services />
   <Testimonials />
   <Team />
   <Community />
-  <Pricing />
+  <!-- <Pricing /> -->
   <Contact />
-  <FAQ />
-  <Footer /> -->
+  <!-- <FAQ /> -->
+  <Footer />
 </template>
