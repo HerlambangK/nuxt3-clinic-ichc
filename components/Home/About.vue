@@ -1,7 +1,7 @@
 <template>
     <UiContainer class="py-16 lg:py-24">
         <p class="text-center font-semibold text-primary">ICHC</p>
-        <h2 class="mb-4 mt-3 text-center text-3xl font-semibold lg:mb-5 lg:text-4xl">
+        <h2 class="mb-1 mt-3 text-center text-3xl font-semibold lg:mb-5 lg:text-4xl">
             Tentang Kami
         </h2>
         <p class="mx-auto max-w-[760px] text-center text-sm text-muted-foreground lg:text-sm">
@@ -14,15 +14,15 @@
         <template v-for="(f, i) in features" :key="i">
             <section class="mt-12 grid grid-cols-1 items-center gap-10 lg:mt-24 lg:h-[520px] lg:grid-cols-2 lg:gap-20">
                 <div :class="[i % 2 == 0 ? 'lg:order-none' : 'lg:order-1']">
-                    <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-primary/20">
+                    <div class="mb-1 flex h-12 w-12 items-center justify-center rounded-full bg-primary/20">
                         <Icon name="heroicons:chat-bubble-left-right" class="h-6 w-6 text-primary" />
                     </div>
-                    <h3 class="mb-2 text-2xl font-semibold lg:mb-4 lg:text-3xl" v-html="f.title" />
-                    <p class="text-muted-foreground lg:text-lg" v-html="f.description" />
+                    <h3 class="mb-1 text-2xl font-semibold lg:mb-4 lg:text-3xl" v-html="f.title" />
+                    <p class="text-muted-foreground text-sm lg:text-lg" v-html="f.description" />
 
-                    <ul class="mt-8 flex flex-col gap-5 text-muted-foreground">
+                    <ul class="mt-2 flex flex-col gap-1 text-sm  text-muted-foreground">
                         <template v-for="(p, k) in f.points" :key="`Point-${k}`">
-                            <li class="flex gap-3 lg:text-lg">
+                            <li class="flex gap-1  mt-2 lg:text-lg">
                                 <Icon name="heroicons:check-circle" class="h-6 w-6 shrink-0 text-primary" />
                                 <span v-html="p.text" />
                             </li>

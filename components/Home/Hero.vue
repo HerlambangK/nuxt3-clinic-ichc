@@ -1,5 +1,5 @@
 <template>
-  <div class="relative overflow-hidden group -z-0 rounded-lg">
+  <div class="relative overflow-hidden group -z-0">
     <div ref="slider" class="flex transition-transform ease-in-out duration-700"
       :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
       <div v-for="(image, index) in images" :key="index" class="w-full flex-shrink-0 top-0 left-0 right-0 ">
@@ -9,11 +9,11 @@
 
     <!-- Kontrol Tombol -->
     <button @click="prevSlide"
-      class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+      class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-500 text-white p-2 rounded-full md:opacity-0 md:group-hover:opacity-100 md:transition-opacity duration-300 z-20">
       <UiFancyIcon circle icon="lucide:chevron-left" class="h-4 w-4" />
     </button>
     <button @click="nextSlide"
-      class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+      class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-500 text-white p-2 rounded-full md:opacity-0 md:group-hover:opacity-100 md:transition-opacity duration-300 z-20">
       <UiFancyIcon circle icon="lucide:chevron-right" class="h-4 w-4" />
     </button>
 
