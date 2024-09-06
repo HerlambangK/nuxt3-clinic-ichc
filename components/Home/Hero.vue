@@ -1,9 +1,9 @@
 <template>
-  <div class="relative overflow-hidden group -z-0">
+  <div class="relative overflow-hidden group -z-0 rounded-lg">
     <div ref="slider" class="flex transition-transform ease-in-out duration-700"
       :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
       <div v-for="(image, index) in images" :key="index" class="w-full flex-shrink-0 top-0 left-0 right-0 ">
-        <img :src="image.src" :alt="image.alt" class="w-full h:[200px] lg:h-[500px] object-cover" />
+        <img :src="image.src" :alt="image.alt" class="w-full h-[200px] h:[200px] lg:h-[500px] object-cover " />
       </div>
     </div>
 

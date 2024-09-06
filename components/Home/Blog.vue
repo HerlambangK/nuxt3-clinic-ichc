@@ -12,23 +12,23 @@
     </div>
 
     <div class="mt-12 grid grid-cols-1 gap-10 lg:mt-16 lg:grid-cols-3">
-      <div v-for="item in 3" :key="item">
+      <div v-for="(artikel, id) in artikels" :key="id">
         <NuxtLink :to="link">
-          <!-- eslint-disable-next-line vue/html-self-closing -->
-          <img v-if="image" :src="image" :alt="alt" class="mb-5 h-[240px] w-full rounded-lg object-cover shadow" />
+          <img v-if="image" :src="artikel.img" :alt="alt"
+            class="mb-5 h-[240px] w-full rounded-lg object-cover shadow" />
         </NuxtLink>
-        <p v-if="headline" class="mb-2 text-sm font-semibold text-primary">{{ headline }}</p>
+        <p v-if="artikel.category" class="mb-2 text-sm font-semibold text-primary">{{ artikel.category }}</p>
         <NuxtLink :to="link">
-          <p class="mb-2 text-xl font-semibold lg:text-2xl">{{ title }}</p>
+          <p class="mb-2 text-base font-semibold lg:text-2xl">{{ artikel.title }}</p>
         </NuxtLink>
-        <p v-if="description" class="mb-5 line-clamp-2 text-ellipsis text-muted-foreground">
-          {{ description }}
-        </p>
+        <p v-if="artikel.content" class="mb-5 line-clamp-2 text-ellipsis text-sm text-nowrap no- text-muted-foreground"
+          v-html="artikel.content" />
+
         <div class="flex items-center">
           <UiAvatar v-if="userImage" :src="userImage" :alt="userName"
             class="mr-3 rounded-full bg-background shadow ring-1 ring-ring/30" />
           <div>
-            <p v-if="userName" class="text-sm font-semibold">{{ userName }}</p>
+            <p v-if="userName" class="text-sm font-semibold">{{ artikel.creator.name }}</p>
             <p v-if="date" class="text-sm text-muted-foreground">{{ date }}</p>
           </div>
         </div>
@@ -39,6 +39,27 @@
 </template>
 
 <script lang="ts" setup>
+// https://api.ichc.co.id/articles
+// Definisikan state untuk menyimpan artikel
+
+const artikels = ref([]);
+
+const fetchArtikel = async () => {
+  try {
+    const response = await fetch('https://api.ichc.co.id/articles');
+    const { data } = await response.json();
+    artikels.value = data.slice(0, 3);
+
+  } catch (error) {
+    console.error("Gagal memuat artikel:", error);
+  }
+}
+
+onMounted(() => {
+  fetchArtikel();
+});
+
+
 const headline = "Kesehatan Gigi Untuk Anak";
 const title = "Caries gigi pada anak";
 const alt = "Caries gigi pada anaks";

@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <section id="sponsors" class="max-w-[75%] mx-auto pb-24 sm:pb-32">
+    <section id="sponsors" class="max-w-xl md:max-w-[75%] mx-auto pb-24 sm:pb-32">
       <h2 class="text-lg md:text-xl text-center mb-6 mt-12 font-semibold">Our Partners</h2>
       <div class="mx-auto">
         <Vue3Marquee :pause-on-hover="true" @on-pause="playState = 'paused'" @on-resume="playState = 'playing'">
